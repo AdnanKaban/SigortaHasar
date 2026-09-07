@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace SigortaHasar.Business
 {
-    internal class KuralSonucu
+    public class KuralSonucu
     {
+        public bool Basarili { get; set; }
+        public string Mesaj { get; set; }
+
     }
 }

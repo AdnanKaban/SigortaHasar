@@ -7,7 +7,10 @@ var dosyalar = hasarDal.GetAll();
 foreach (var d in dosyalar)
     Console.WriteLine(d.DosyaNo);
 IHasarService hasarService = new HasarManager(hasarDal);
- var gecIhbarEdilenDosyalar=
+ var gecIhbarEdilenDosyalar= hasarDal.GetAll();
+var dosya = hasarService.GetByDosyaNo("H003");
+var sonuc = HasarManager.HasarIhbariniDegerlendir(dosya);
+Console.WriteLine(sonuc.Mesaj);
 
 // ... diğer sorgular ...
 //foreach (var d in dosyalar.Where(d => d.Durum == HasarDurumu.Acik))
