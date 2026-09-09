@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SigortaHasar.Business
+namespace SigortaHasar.Business.Interfaces
 {
     public  interface IHasarKurali
     {

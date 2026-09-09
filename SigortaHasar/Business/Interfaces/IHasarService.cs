@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SigortaHasar.Business
+namespace SigortaHasar.Business.Interfaces
 {
     public interface IHasarService
     {
@@ -14,5 +14,6 @@ namespace SigortaHasar.Business
         List<HasarDosyasi> GetAcikDosyalar();
         List<HasarDosyasi> GetReddedilenDosyalar();
         List<HasarDosyasi> GetGecIhbarEdilenler();
+        KuralSonucu HasarIhbariniDegerlendir(HasarDosyasi dosya);
     }
 }

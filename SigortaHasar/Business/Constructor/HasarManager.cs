@@ -1,6 +1,8 @@
-﻿using SigortaHasar.DataAccess;
+﻿using SigortaHasar.Business.Interfaces;
+using SigortaHasar.Business.Kurallar;
+using SigortaHasar.DataAccess;
 using SigortaHasar.Entities;
-namespace SigortaHasar.Business
+namespace SigortaHasar.Business.Constructor
 {
     public class HasarManager : IHasarService
     {
@@ -14,9 +16,11 @@ namespace SigortaHasar.Business
             _kurallar = new List<IHasarKurali>
             {
                 new PoliceGecerlilikKurali(),
-                new GecIhbarKurali()
+                new GecIhbarKurali(),
+                new PrimBorcuKurali()
             };
         }
+
         public KuralSonucu HasarIhbariniDegerlendir(HasarDosyasi dosya)
         {
             foreach (var kural in _kurallar)
@@ -29,7 +33,6 @@ namespace SigortaHasar.Business
             return new KuralSonucu { Basarili = true };
         }
         private const int IhbarSuresiGun = 5;
-       
         public List<HasarDosyasi> GetAll()
         {
             return _hasarDal.GetAll();

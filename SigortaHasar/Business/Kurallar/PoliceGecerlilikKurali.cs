@@ -1,11 +1,12 @@
-﻿using SigortaHasar.Entities;
+﻿using SigortaHasar.Business.Interfaces;
+using SigortaHasar.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SigortaHasar.Business
+namespace SigortaHasar.Business.Kurallar
 {
     public class PoliceGecerlilikKurali : IHasarKurali
     {

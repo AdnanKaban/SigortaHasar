@@ -1,4 +1,6 @@
 ﻿using SigortaHasar.Business;
+using SigortaHasar.Business.Constructor;
+using SigortaHasar.Business.Interfaces;
 using SigortaHasar.DataAccess;
 
 IHasarDal hasarDal = new InMemoryHasarDal();
@@ -7,10 +9,16 @@ var dosyalar = hasarDal.GetAll();
 foreach (var d in dosyalar)
     Console.WriteLine(d.DosyaNo);
 IHasarService hasarService = new HasarManager(hasarDal);
- var gecIhbarEdilenDosyalar= hasarDal.GetAll();
-var dosya = hasarService.GetByDosyaNo("H003");
-var sonuc = HasarManager.HasarIhbariniDegerlendir(dosya);
-Console.WriteLine(sonuc.Mesaj);
+
+foreach (var d in hasarService.GetAll())
+{
+    var s = hasarService.HasarIhbariniDegerlendir(d);
+    if (s.Basarili)
+        Console.WriteLine($"{d.DosyaNo}: Kabul edildi");
+    else
+        Console.WriteLine($"{d.DosyaNo}: Reddedildi - {s.Mesaj}");
+}
+
 
 // ... diğer sorgular ...
 //foreach (var d in dosyalar.Where(d => d.Durum == HasarDurumu.Acik))

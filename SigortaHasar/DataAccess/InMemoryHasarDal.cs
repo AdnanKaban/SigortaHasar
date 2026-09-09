@@ -62,7 +62,13 @@ namespace SigortaHasar.DataAccess
                 SigortaEttiren = m1,
                 Arac = a1,
                 BaslangicTarihi = new DateTime(2025, 10, 12),
-                BitisTarihi = new DateTime(2026, 10, 12)
+                BitisTarihi = new DateTime(2026, 10, 12),
+                Taksitler = new List<Taksit>
+                {
+                    new Taksit { Tutar = 2000m, VadeTarihi = new DateTime(2025, 10, 12), Odendimi = true },
+                    new Taksit { Tutar = 2000m, VadeTarihi = new DateTime(2025, 11, 12), Odendimi = true },
+                    new Taksit { Tutar = 2000m, VadeTarihi = new DateTime(2025, 12, 12), Odendimi = true }
+                }
             };
 
             // P2: Süresi dolmuş/eski poliçe (2023 - 2024 tarihlerini test etmek için)
@@ -73,7 +79,13 @@ namespace SigortaHasar.DataAccess
                 SigortaEttiren = m1,
                 Arac = a1,
                 BaslangicTarihi = new DateTime(2023, 01, 01),
-                BitisTarihi = new DateTime(2024, 01, 01)
+                BitisTarihi = new DateTime(2024, 01, 01),
+                Taksitler = new List<Taksit>
+                {
+                    new Taksit { Tutar = 1500m, VadeTarihi = new DateTime(2023, 01, 01), Odendimi = true },
+                    new Taksit { Tutar = 1500m, VadeTarihi = new DateTime(2023, 02, 01), Odendimi = false }, // Gecikmiş taksit
+                    new Taksit { Tutar = 1500m, VadeTarihi = new DateTime(2023, 03, 01), Odendimi = false }
+                }
             };
 
             // P3: Sigortalı != Sigorta Ettiren durumu (Sigortalı: Oğul/m1, Ettiren/Ödeyen: Baba/m2)
@@ -84,7 +96,13 @@ namespace SigortaHasar.DataAccess
                 SigortaEttiren = m2,
                 Arac = a2,
                 BaslangicTarihi = new DateTime(2024, 05, 01),
-                BitisTarihi = new DateTime(2025, 05, 01)
+                BitisTarihi = new DateTime(2025, 05, 01),
+                Taksitler = new List<Taksit>
+                {
+                    new Taksit { Tutar = 3000m, VadeTarihi = new DateTime(2024, 05, 01), Odendimi = true },
+                    new Taksit { Tutar = 3000m, VadeTarihi = new DateTime(2024, 06, 01), Odendimi = false },
+                    new Taksit { Tutar = 3000m, VadeTarihi = new DateTime(2024, 07, 01), Odendimi = false }
+                }
             };
 
             // --- HASAR DOSYALARI ---
@@ -92,8 +110,8 @@ namespace SigortaHasar.DataAccess
             {
                 DosyaNo = "H001",
                 Police = p1,
-                OlayTarihi = new DateTime(2025, 03, 10),
-                IhbarTarihi = new DateTime(2025, 03, 11),
+                OlayTarihi = new DateTime(2025, 10, 12),
+                IhbarTarihi = new DateTime(2025, 10, 13),
                 Durum = HasarDurumu.Acik,
                 TahminiHasarTutari = 25000
             };
@@ -102,8 +120,8 @@ namespace SigortaHasar.DataAccess
             {
                 DosyaNo = "H002",
                 Police = p1,
-                OlayTarihi = new DateTime(2025, 04, 15),
-                IhbarTarihi = new DateTime(2025, 04, 16),
+                OlayTarihi = new DateTime(2025, 01, 15),
+                IhbarTarihi = new DateTime(2026, 01, 16),
                 Durum = HasarDurumu.Eksperde,
                 TahminiHasarTutari = 42000
             };
@@ -146,8 +164,8 @@ namespace SigortaHasar.DataAccess
             _dosyalar = new List<HasarDosyasi> { h1, h2, h3, h4, h5 };
 
         }
-  
 
+        
         public void Add(HasarDosyasi dosya)
         {
             _dosyalar.Add(dosya);
