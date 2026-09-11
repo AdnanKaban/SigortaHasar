@@ -15,5 +15,7 @@ namespace SigortaHasar.Business.Interfaces
         List<HasarDosyasi> GetReddedilenDosyalar();
         List<HasarDosyasi> GetGecIhbarEdilenler();
         KuralSonucu HasarIhbariniDegerlendir(HasarDosyasi dosya);
+        KuralSonucu DurumDegistir(HasarDosyasi dosya, HasarDurumu yeniDurum);
+        List<HasarDurumu> GetGecerliGecisler(HasarDosyasi dosya);
     }
 }
